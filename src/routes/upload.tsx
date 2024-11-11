@@ -110,7 +110,7 @@ function Upload() {
                     <Input onChange={handleCoverFileChange} className="h-11 w-72 items-center" type="file" accept=".png,.jpg" iconRight={<ArrowUpFromLine />} />
                   </div>
                 </div>
-                <div className="col-span-1 mt-6 flex justify-end md:col-span-2">
+                <div className="col-span-1 mt-6 flex justify-end md:col-span-2 md:mt-0">
                   <Button onClick={handleNext}>Next</Button>
                 </div>
               </div>
