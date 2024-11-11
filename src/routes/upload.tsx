@@ -43,7 +43,7 @@ function Upload() {
           <CardTitle className="mb-4 text-2xl">Upload a Book</CardTitle>
           <CardDescription>
             {step === 1 && (
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="flex flex-col gap-4">
                   <div>
                     <Label>
@@ -86,36 +86,38 @@ function Upload() {
                   </TooltipProvider>
                 </div>
 
-                <div className="flex flex-col justify-center gap-6">
-                  <div className="mt-4 flex flex-col gap-6">
-                    <div className="flex flex-col items-center">
-                      <Label className="pb-2 pl-1">Book Upload</Label>
-                      <Input
-                        onChange={handleBookFileChange}
-                        className="h-11 w-72 items-center"
-                        type="file"
-                        accept=".epub,.mobi,.pdf"
-                        iconRight={
-                          <IconButton>
-                            <ArrowUpFromLine />
-                          </IconButton>
-                        }
-                      />
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <Label className="pb-2 pl-1">Cover Upload</Label>
-                      <Input onChange={handleCoverFileChange} className="h-11 w-72 items-center" type="file" accept=".png,.jpg" iconRight={<ArrowUpFromLine />} />
-                    </div>
+                <div className="mt-6 flex flex-col justify-center gap-6 md:mt-0">
+                  <div className="flex flex-col items-center">
+                    <Label className="pb-2 pl-1">
+                      Book Upload <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      onChange={handleBookFileChange}
+                      className="h-11 w-72 items-center"
+                      type="file"
+                      accept=".epub,.mobi,.pdf"
+                      iconRight={
+                        <IconButton>
+                          <ArrowUpFromLine />
+                        </IconButton>
+                      }
+                    />
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <Label className="pb-2 pl-1">
+                      Cover Upload <span className="text-red-500">*</span>
+                    </Label>
+                    <Input onChange={handleCoverFileChange} className="h-11 w-72 items-center" type="file" accept=".png,.jpg" iconRight={<ArrowUpFromLine />} />
                   </div>
                 </div>
-                <Button onClick={handleNext} className="col-span-2 mt-6">
-                  Next (Optional Fields)
-                </Button>
+                <div className="col-span-1 mt-6 flex justify-end md:col-span-2">
+                  <Button onClick={handleNext}>Next</Button>
+                </div>
               </div>
             )}
             {step === 2 && (
               <div className="flex flex-col gap-4">
-                <p className="text-l">These fields are optional but highly enouraged!</p>
+                <p className="text-l">These fields are optional but highly encouraged!</p>
                 <div>
                   <Label>Series</Label>
                   <Input placeholder="science fiction, dystopian, thriller" className="w-full" />
