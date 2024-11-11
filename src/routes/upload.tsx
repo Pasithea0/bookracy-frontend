@@ -38,7 +38,7 @@ function Upload() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <Card className="w-[90%] p-6 text-left">
+      <Card className="w-[90%] text-left md:p-6">
         <CardHeader>
           <CardTitle className="mb-4 text-2xl">Upload a Book</CardTitle>
           <CardDescription>
@@ -86,14 +86,14 @@ function Upload() {
                   </TooltipProvider>
                 </div>
 
-                <div className="mt-6 flex flex-col justify-center gap-6 md:mt-0">
-                  <div className="flex flex-col items-center">
+                <div className="mt-6 flex w-full flex-col justify-center gap-6 md:mt-0">
+                  <div className="flex flex-col md:items-center">
                     <Label className="pb-2 pl-1">
                       Book Upload <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       onChange={handleBookFileChange}
-                      className="h-11 w-72 items-center"
+                      className="h-10 w-full items-center md:w-72"
                       type="file"
                       accept=".epub,.mobi,.pdf"
                       iconRight={
@@ -103,11 +103,11 @@ function Upload() {
                       }
                     />
                   </div>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col md:items-center">
                     <Label className="pb-2 pl-1">
                       Cover Upload <span className="text-red-500">*</span>
                     </Label>
-                    <Input onChange={handleCoverFileChange} className="h-11 w-72 items-center" type="file" accept=".png,.jpg" iconRight={<ArrowUpFromLine />} />
+                    <Input onChange={handleCoverFileChange} className="h-10 w-full items-center md:w-72" type="file" accept=".png,.jpg" iconRight={<ArrowUpFromLine />} />
                   </div>
                 </div>
                 <div className="col-span-1 mt-6 flex justify-end md:col-span-2 md:mt-0">
