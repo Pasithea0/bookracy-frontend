@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { IconButton } from "@/components/ui/icon-button";
 import { ArrowUpFromLine } from "lucide-react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const Route = createFileRoute("/upload")({
   component: Upload,
@@ -68,12 +69,21 @@ function Upload() {
                     </Label>
                     <Input placeholder="1977" required className="w-full" />
                   </div>
-                  <div>
-                    <Label>
-                      File Format <span className="text-red-500">*</span>
-                    </Label>
-                    <Input placeholder="epub" accept="epub, mobi, pdf" required className="w-full" />
-                  </div>
+                  <TooltipProvider delayDuration={0}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div>
+                          <Label>
+                            File Format <span className="text-red-500">*</span>
+                          </Label>
+                          <Input placeholder="epub" accept="epub, mobi, pdf" required className="w-full" />
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent className="translate-y-[-3px]" side="right" align="end">
+                        Supported formats: epub, mobi, pdf
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
 
                 <div className="flex flex-col justify-center gap-6">
