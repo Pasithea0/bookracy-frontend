@@ -17,7 +17,6 @@ export const Route = createFileRoute("/upload")({
 
 function Upload() {
   const [step, setStep] = useState(1);
-  const [stage, setStage] = useState(1);
   const [bookFile, setBookFile] = useState<File | null>(null);
   const [coverFile, setCoverFile] = useState<File | null>(null);
 
@@ -33,150 +32,106 @@ function Upload() {
     }
   };
 
-  const handleNext = () => {
-    const newStep = step + 1;
-    setStep(newStep);
-    setStage(newStep > 6 ? 2 : 1);
-  };
-
-  const handleBack = () => {
-    const newStep = step - 1;
-    setStep(newStep);
-    setStage(newStep > 6 ? 2 : 1);
-  };
+  const handleNext = () => setStep(2);
+  const handleBack = () => setStep(1);
 
   return (
-    <div className="flex items-center justify-center">
-      <Card className="w-fit">
+    <div className="flex w-full items-center justify-center">
+      <Card className="w-[90%] p-6 text-left">
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle>Upload a Book</CardTitle>
-            <Label className="text-gray-700 dark:text-gray-400">Stage #{stage}</Label>
-          </div>
-          <CardDescription className="pt-3">
+          <CardTitle className="mb-4 text-2xl">Upload a Book</CardTitle>
+          <CardDescription>
             {step === 1 && (
-              <div>
-                <Label className="pl-1">Book Title</Label>
-                <Input placeholder="A Scanner Darkly" title="Book Title" className="w-72" />
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <Label>
+                      Book Title <span className="text-red-500">*</span>
+                    </Label>
+                    <Input placeholder="A Scanner Darkly" required className="w-full" />
+                  </div>
+                  <div>
+                    <Label>
+                      Author <span className="text-red-500">*</span>
+                    </Label>
+                    <Input placeholder="Philip K Dick" required className="w-full" />
+                  </div>
+                  <div>
+                    <Label>
+                      Publisher <span className="text-red-500">*</span>
+                    </Label>
+                    <Input placeholder="Doubleday & Company" required className="w-full" />
+                  </div>
+                  <div>
+                    <Label>
+                      Year Published <span className="text-red-500">*</span>
+                    </Label>
+                    <Input placeholder="1977" required className="w-full" />
+                  </div>
+                  <div>
+                    <Label>
+                      File Format <span className="text-red-500">*</span>
+                    </Label>
+                    <Input placeholder="epub" accept="epub, mobi, pdf" required className="w-full" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center gap-6">
+                  <div className="mt-4 flex flex-col gap-6">
+                    <div className="flex flex-col items-center">
+                      <Label className="pb-2 pl-1">Book Upload</Label>
+                      <Input
+                        onChange={handleBookFileChange}
+                        className="h-11 w-72 items-center"
+                        type="file"
+                        accept=".epub,.mobi,.pdf"
+                        iconRight={
+                          <IconButton>
+                            <ArrowUpFromLine />
+                          </IconButton>
+                        }
+                      />
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <Label className="pb-2 pl-1">Cover Upload</Label>
+                      <Input onChange={handleCoverFileChange} className="h-11 w-72 items-center" type="file" accept=".png,.jpg" iconRight={<ArrowUpFromLine />} />
+                    </div>
+                  </div>
+                </div>
+                <Button onClick={handleNext} className="col-span-2 mt-6">
+                  Next (Optional Fields)
+                </Button>
               </div>
             )}
             {step === 2 && (
-              <div>
-                <Label className="pl-1">Author</Label>
-                <Input placeholder="Philip K Dick" title="Author" className="w-72" />
-              </div>
-            )}
-            {step === 3 && (
-              <div>
-                <Label className="pl-1">Publisher</Label>
-                <Input placeholder="Doubleday & Company" title="Publisher" className="w-72" />
-              </div>
-            )}
-            {step === 4 && (
-              <div>
-                <Label className="pl-1">Year Published</Label>
-                <Input placeholder="1977" title="Year Published" className="w-72" />
-              </div>
-            )}
-            {step === 5 && (
-              <div>
-                <Label className="pl-1">File Format</Label>
-                <Input placeholder="epub" title="File Format" className="w-72" />
-              </div>
-            )}
-            {step === 6 && (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
+                <p className="text-l">These fields are optional but highly enouraged!</p>
                 <div>
-                  <Label className="pl-1">Book Upload</Label>
-                  <Input
-                    onChange={handleBookFileChange}
-                    className="h-11 w-72 items-center"
-                    type="file"
-                    iconRight={
-                      <IconButton>
-                        <ArrowUpFromLine />
-                      </IconButton>
-                    }
-                  />
+                  <Label>Series</Label>
+                  <Input placeholder="science fiction, dystopian, thriller" className="w-full" />
                 </div>
                 <div>
-                  <Label className="pl-1">Cover Image Upload</Label>
-                  <Input
-                    onChange={handleCoverFileChange}
-                    className="h-11 w-72 items-center"
-                    type="file"
-                    iconRight={
-                      <IconButton>
-                        <ArrowUpFromLine />
-                      </IconButton>
-                    }
-                  />
+                  <Label>ISBN</Label>
+                  <Input placeholder="9788834718674" className="w-full" />
+                </div>
+                <div>
+                  <Label>CID</Label>
+                  <Input placeholder="A IPFS node upload of the book" className="w-full" />
+                </div>
+                <div>
+                  <Label>Other Titles</Label>
+                  <Input placeholder="Scanner Darkly" className="w-full" />
+                </div>
+                <div>
+                  <Label>Description</Label>
+                  <Textarea placeholder="Description" className="w-full" />
+                </div>
+                <div className="mt-6 flex justify-between">
+                  <Button onClick={handleBack}>Back</Button>
+                  <Button>Finish</Button>
                 </div>
               </div>
             )}
-            {step === 7 && (
-              <div>
-                <p className="pl-1">
-                  Yay, all necessary file information has been entered!
-                  <br />
-                  All data from here on is <strong>optional</strong>.
-                </p>
-              </div>
-            )}
-            {step === 8 && (
-              <div>
-                <Label className="pl-1">Series</Label>
-                <Input placeholder="science fiction, dystopian, thriller" title="Series" className="w-72" />
-              </div>
-            )}
-            {step === 9 && (
-              <div>
-                <Label className="pl-1">ISBN</Label>
-                <Input placeholder="9788834718674" title="ISBN" className="w-72" />
-              </div>
-            )}
-            {step === 10 && (
-              <div>
-                <Label className="pl-1">CID</Label>
-                <Input placeholder="A IPFS node upload of the book" title="CID" className="w-72" />
-              </div>
-            )}
-            {step === 11 && (
-              <div>
-                <Label className="pl-1">Other Titles</Label>
-                <Input placeholder="Scanner Darkly" title="Other titles" className="w-72" />
-              </div>
-            )}
-            {step === 12 && (
-              <div>
-                <Label className="pl-1">Description</Label>
-                <Textarea placeholder="Description" title="Description" className="w-72" />
-              </div>
-            )}
-            {step === 13 && (
-              <div>
-                <p className="pl-1">
-                  You have completed all the necessary steps to upload a book,
-                  <br />
-                  your submission will be reviewed by our team shortly!
-                </p>
-              </div>
-            )}
-            <div className="flex justify-between">
-              {step > 1 ? (
-                <Button onClick={handleBack} className="mt-4">
-                  Back
-                </Button>
-              ) : (
-                <div className="flex-grow"></div>
-              )}
-              {step < 13 && (
-                <Button onClick={handleNext} className={`mt-4 ${step <= 1 ? "ml-auto" : ""}`}>
-                  Next
-                </Button>
-              )}
-              {step === 13 && <Button className={`mt-4 ${step <= 1 ? "ml-auto" : ""}`}>Finish</Button>}
-            </div>
           </CardDescription>
         </CardHeader>
       </Card>
