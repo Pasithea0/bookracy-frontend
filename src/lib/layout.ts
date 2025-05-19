@@ -41,14 +41,6 @@ export function getMenuList(pathname: FileRouteTypes["fullPaths"] | string, beta
           submenus: [],
         },
         {
-          href: "/library",
-          label: "Library",
-          active: pathname === "/library",
-          icon: BookMarked,
-          submenus: [],
-          disabled: import.meta.env.PROD,
-        },
-        {
           href: "/upload",
           label: "Upload",
           active: pathname === "/upload",
@@ -70,10 +62,10 @@ export function getMenuList(pathname: FileRouteTypes["fullPaths"] | string, beta
           disabled: import.meta.env.DEV ? false : !beta,
         },
         {
-          href: "/lists",
-          label: "Lists",
-          active: pathname === "/lists",
-          icon: BookOpenText,
+          href: "/library",
+          label: "Library",
+          active: pathname === "/library",
+          icon: BookMarked,
           submenus: [],
         },
         {

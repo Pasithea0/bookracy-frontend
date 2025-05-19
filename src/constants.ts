@@ -8,7 +8,6 @@ export const PAGE_TITLES: Partial<Record<FileRouteTypes["fullPaths"], string>> =
   "/": "Home",
   "/about": "About",
   "/account": "Account",
-  "/lists": "Lists",
   "/contact": "Contact",
   "/featured": "Featured",
   "/library": "Library",

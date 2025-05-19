@@ -15,7 +15,6 @@ import { Route as UploadImport } from './routes/upload'
 import { Route as SettingsImport } from './routes/settings'
 import { Route as RegisterImport } from './routes/register'
 import { Route as LoginImport } from './routes/login'
-import { Route as ListsImport } from './routes/lists'
 import { Route as LibraryImport } from './routes/library'
 import { Route as FeaturedImport } from './routes/featured'
 import { Route as ContactImport } from './routes/contact'
@@ -46,12 +45,6 @@ const RegisterRoute = RegisterImport.update({
 const LoginRoute = LoginImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ListsRoute = ListsImport.update({
-  id: '/lists',
-  path: '/lists',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -137,13 +130,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryImport
       parentRoute: typeof rootRoute
     }
-    '/lists': {
-      id: '/lists'
-      path: '/lists'
-      fullPath: '/lists'
-      preLoaderRoute: typeof ListsImport
-      parentRoute: typeof rootRoute
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -184,7 +170,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/featured': typeof FeaturedRoute
   '/library': typeof LibraryRoute
-  '/lists': typeof ListsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
@@ -198,7 +183,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/featured': typeof FeaturedRoute
   '/library': typeof LibraryRoute
-  '/lists': typeof ListsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
@@ -213,7 +197,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/featured': typeof FeaturedRoute
   '/library': typeof LibraryRoute
-  '/lists': typeof ListsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/settings': typeof SettingsRoute
@@ -229,7 +212,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/featured'
     | '/library'
-    | '/lists'
     | '/login'
     | '/register'
     | '/settings'
@@ -242,7 +224,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/featured'
     | '/library'
-    | '/lists'
     | '/login'
     | '/register'
     | '/settings'
@@ -255,7 +236,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/featured'
     | '/library'
-    | '/lists'
     | '/login'
     | '/register'
     | '/settings'
@@ -270,7 +250,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FeaturedRoute: typeof FeaturedRoute
   LibraryRoute: typeof LibraryRoute
-  ListsRoute: typeof ListsRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   SettingsRoute: typeof SettingsRoute
@@ -284,7 +263,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FeaturedRoute: FeaturedRoute,
   LibraryRoute: LibraryRoute,
-  ListsRoute: ListsRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   SettingsRoute: SettingsRoute,
@@ -307,7 +285,6 @@ export const routeTree = rootRoute
         "/contact",
         "/featured",
         "/library",
-        "/lists",
         "/login",
         "/register",
         "/settings",
@@ -331,9 +308,6 @@ export const routeTree = rootRoute
     },
     "/library": {
       "filePath": "library.tsx"
-    },
-    "/lists": {
-      "filePath": "lists.tsx"
     },
     "/login": {
       "filePath": "login.tsx"
