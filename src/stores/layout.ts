@@ -16,7 +16,7 @@ export const useLayoutStore = create<LayoutStoreState>()(
   persist(
     (set) => ({
       sidebar: {
-        isOpen: true,
+        isOpen: false,
         setIsOpen: () => {
           set((state) => ({ sidebar: { ...state.sidebar, isOpen: !state.sidebar.isOpen } }));
         },
