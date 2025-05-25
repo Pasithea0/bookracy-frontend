@@ -1,7 +1,6 @@
 import { FileRouteTypes } from "@/routeTree.gen";
 import { Blocks, House, LucideIcon, BookMarked, Star, Upload, BookOpenText, Heart, SearchIcon } from "lucide-react";
 
-
 export type Submenu = {
   href: FileRouteTypes["fullPaths"];
   label: string;
@@ -64,13 +63,6 @@ export function getMenuList(pathname: FileRouteTypes["fullPaths"] | string, beta
           icon: Heart,
           submenus: [],
           disabled: import.meta.env.DEV,
-        },
-        {
-          href: "/donation",
-          label: "Donate",
-          active: pathname === "/donation",
-          icon: Heart,
-          submenus: [],
         },
       ],
     },
